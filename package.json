@@ -7,8 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "npx prisma db seed",
-    "generate": "npx prisma generate --schema=src/prisma/schema.prisma"
+    "vercel-build": "npm run prisma:generate && npm run prisma:migrate:deploy && npm run build",
+    "prisma:migrate:dev": "npx prisma migrate dev",
+    "prisma:migrate:deploy": "npx prisma migrate deploy",
+    "prisma:seed": "npx prisma db seed",
+    "prisma:generate": "npx prisma generate --schema=src/prisma/schema.prisma"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/prisma/seed.ts"
