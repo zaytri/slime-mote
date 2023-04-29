@@ -1,34 +1,19 @@
 import Head from 'next/head'
-import ProductComponent, { PropProduct } from '../components/Product'
+import ProductComponent from '../components/Product'
 import prisma from '@/prisma/client'
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import { Category } from '@prisma/client'
 
-type Props = {
-  products: PropProduct[]
-}
-
-export const getStaticProps: GetStaticProps<Props> = async context => {
-  const data = await prisma.product.findMany({
+export default async function Home() {
+  const staticData = await prisma.product.findMany({
     include: {
       category: true,
     },
   })
 
-  //convert decimal value to string to pass through as json
-  const products = data.map(product => ({
+  const products = staticData.map(product => ({
     ...product,
     price: product.price.toString(),
   }))
 
-  return {
-    props: { products },
-  }
-}
-
-export default function Home({
-  products,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <Head>

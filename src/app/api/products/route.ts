@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server.js'
 import prisma from '@/prisma/client'
 
-export default async function GET() {
+export async function GET(request: Request) {
   try {
     const data = await prisma.product.findMany({})
     return NextResponse.json({ data }, { status: 200 })
