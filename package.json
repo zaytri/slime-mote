@@ -11,9 +11,10 @@
     "prisma:migrate:dev": "npx prisma migrate dev",
     "prisma:migrate:deploy": "npx prisma migrate deploy",
     "prisma:seed": "npx prisma db seed",
-    "prisma:generate": "npx prisma generate --schema=src/prisma/schema.prisma"
+    "prisma:generate": "npx prisma generate"
   },
   "prisma": {
+    "schema": "src/prisma/schema.prisma",
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/prisma/seed.ts"
   },
   "dependencies": {
